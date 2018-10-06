@@ -1,10 +1,10 @@
+extern crate jqrs;
 extern crate wasm_bindgen;
 extern crate web_sys;
-extern crate jqrs;
 
-use wasm_bindgen::prelude::*;
 use jqrs::s;
-use web_sys::{HtmlElement};
+use wasm_bindgen::prelude::*;
+use web_sys::HtmlElement;
 
 #[wasm_bindgen]
 pub fn run() -> Result<(), JsValue> {
@@ -14,6 +14,12 @@ pub fn run() -> Result<(), JsValue> {
 
     if let Ok(text) = s().first::<HtmlElement>("p strong") {
         text.set_inner_text("disturbing");
+    }
+
+    if let Ok(elems) = s().find::<HtmlElement>("p em") {
+        for elem in &elems {
+            elem.set_inner_text("IT'S ALL ON FIRE");
+        }
     }
 
     Ok(())

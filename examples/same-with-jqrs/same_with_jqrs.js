@@ -83,8 +83,20 @@ export function __widl_f_query_selector_Document(arg0, arg1, arg2, exnptr) {
     }
 }
 
-export function __widl_instanceof_HTMLElement(idx) {
-    return getObject(idx) instanceof HTMLElement ? 1 : 0;
+const __widl_f_query_selector_all_Document_target = Document.prototype.querySelectorAll || function() {
+    throw new Error(`wasm-bindgen: Document.prototype.querySelectorAll does not exist`);
+};
+
+export function __widl_f_query_selector_all_Document(arg0, arg1, arg2, exnptr) {
+    let varg1 = getStringFromWasm(arg1, arg2);
+    try {
+        return addHeapObject(__widl_f_query_selector_all_Document_target.call(getObject(arg0), varg1));
+    } catch (e) {
+        const view = getUint32Memory();
+        view[exnptr / 4] = 1;
+        view[exnptr / 4 + 1] = addHeapObject(e);
+
+    }
 }
 
 function GetOwnOrInheritedPropertyDescriptor(obj, id) {
@@ -96,8 +108,8 @@ function GetOwnOrInheritedPropertyDescriptor(obj, id) {
     throw new Error(`descriptor for id='${id}' not found`);
 }
 
-const __widl_f_inner_text_HTMLElement_target = GetOwnOrInheritedPropertyDescriptor(HTMLElement.prototype, 'innerText').get || function() {
-    throw new Error(`wasm-bindgen: GetOwnOrInheritedPropertyDescriptor(HTMLElement.prototype, 'innerText').get does not exist`);
+const __widl_f_tag_name_Element_target = GetOwnOrInheritedPropertyDescriptor(Element.prototype, 'tagName').get || function() {
+    throw new Error(`wasm-bindgen: GetOwnOrInheritedPropertyDescriptor(Element.prototype, 'tagName').get does not exist`);
 };
 
 const lTextEncoder = typeof TextEncoder === 'undefined' ? require('util').TextEncoder : TextEncoder;
@@ -111,6 +123,23 @@ function passStringToWasm(arg) {
     getUint8Memory().set(buf, ptr);
     return [ptr, buf.length];
 }
+
+export function __widl_f_tag_name_Element(ret, arg0) {
+
+    const [retptr, retlen] = passStringToWasm(__widl_f_tag_name_Element_target.call(getObject(arg0)));
+    const mem = getUint32Memory();
+    mem[ret / 4] = retptr;
+    mem[ret / 4 + 1] = retlen;
+
+}
+
+export function __widl_instanceof_HTMLElement(idx) {
+    return getObject(idx) instanceof HTMLElement ? 1 : 0;
+}
+
+const __widl_f_inner_text_HTMLElement_target = GetOwnOrInheritedPropertyDescriptor(HTMLElement.prototype, 'innerText').get || function() {
+    throw new Error(`wasm-bindgen: GetOwnOrInheritedPropertyDescriptor(HTMLElement.prototype, 'innerText').get does not exist`);
+};
 
 export function __widl_f_inner_text_HTMLElement(ret, arg0) {
 
@@ -128,6 +157,25 @@ const __widl_f_set_inner_text_HTMLElement_target = GetOwnOrInheritedPropertyDesc
 export function __widl_f_set_inner_text_HTMLElement(arg0, arg1, arg2) {
     let varg1 = getStringFromWasm(arg1, arg2);
     __widl_f_set_inner_text_HTMLElement_target.call(getObject(arg0), varg1);
+}
+
+const __widl_f_get_NodeList_target = function(y) {
+    return this[y];
+};
+
+export function __widl_f_get_NodeList(arg0, arg1) {
+
+    const val = __widl_f_get_NodeList_target.call(getObject(arg0), arg1);
+    return isLikeNone(val) ? 0 : addHeapObject(val);
+
+}
+
+const __widl_f_length_NodeList_target = GetOwnOrInheritedPropertyDescriptor(NodeList.prototype, 'length').get || function() {
+    throw new Error(`wasm-bindgen: GetOwnOrInheritedPropertyDescriptor(NodeList.prototype, 'length').get does not exist`);
+};
+
+export function __widl_f_length_NodeList(arg0) {
+    return __widl_f_length_NodeList_target.call(getObject(arg0));
 }
 
 export function __widl_instanceof_Window(idx) {
@@ -196,6 +244,42 @@ export function __wbindgen_object_drop_ref(i) {
 
 export function __wbindgen_string_new(p, l) {
     return addHeapObject(getStringFromWasm(p, l));
+}
+
+export function __wbindgen_number_get(n, invalid) {
+    let obj = getObject(n);
+    if (typeof(obj) === 'number') return obj;
+    getUint8Memory()[invalid] = 1;
+    return 0;
+}
+
+export function __wbindgen_is_null(idx) {
+    return getObject(idx) === null ? 1 : 0;
+}
+
+export function __wbindgen_is_undefined(idx) {
+    return getObject(idx) === undefined ? 1 : 0;
+}
+
+export function __wbindgen_boolean_get(i) {
+    let v = getObject(i);
+    if (typeof(v) === 'boolean') {
+        return v ? 1 : 0;
+    } else {
+        return 2;
+    }
+}
+
+export function __wbindgen_is_symbol(i) {
+    return typeof(getObject(i)) === 'symbol' ? 1 : 0;
+}
+
+export function __wbindgen_string_get(i, len_ptr) {
+    let obj = getObject(i);
+    if (typeof(obj) !== 'string') return 0;
+    const [ptr, len] = passStringToWasm(obj);
+    getUint32Memory()[len_ptr / 4] = len;
+    return ptr;
 }
 
 function takeObject(idx) {

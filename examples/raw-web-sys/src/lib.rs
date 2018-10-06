@@ -21,8 +21,10 @@ pub fn run() -> Result<(), JsValue> {
 fn adjust_headline(document: &Document) -> Result<(), JsValue> {
     let headline = document
         .get_elements_by_tag_name("h1")
-        .get_with_index(0).ok_or(JsValue::NULL)?
-        .dyn_into::<HtmlElement>().map_err(|_| JsValue::NULL)?;
+        .get_with_index(0)
+        .ok_or(JsValue::NULL)?
+        .dyn_into::<HtmlElement>()
+        .map_err(|_| JsValue::NULL)?;
 
     headline.set_inner_text(&format!("{} yOu WaS hAcCkd", headline.inner_text()));
 
@@ -32,11 +34,14 @@ fn adjust_headline(document: &Document) -> Result<(), JsValue> {
 fn adjust_text(document: &Document) -> Result<(), JsValue> {
     let text = document
         .get_elements_by_tag_name("p")
-        .get_with_index(0).ok_or(JsValue::NULL)?
-        .query_selector("strong").map_err(|_| JsValue::NULL)?.ok_or(JsValue::NULL)?
-        .dyn_into::<web_sys::HtmlElement>().map_err(|_| JsValue::NULL)?
+        .get_with_index(0)
+        .ok_or(JsValue::NULL)?
+        .query_selector("strong")
+        .map_err(|_| JsValue::NULL)?
+        .ok_or(JsValue::NULL)?
+        .dyn_into::<web_sys::HtmlElement>()
+        .map_err(|_| JsValue::NULL)?
         .set_inner_text("disturbing");
 
     Ok(())
 }
-
