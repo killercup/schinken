@@ -1,5 +1,5 @@
 /* tslint:disable */
-import * as wasm from './same_with_jqrs_bg';
+import * as wasm from './same_with_schinken_bg';
 
 /**
 * @returns {void}

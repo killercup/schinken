@@ -1,8 +1,8 @@
-extern crate jqrs;
+extern crate schinken;
 extern crate wasm_bindgen;
 extern crate web_sys;
 
-use jqrs::s;
+use schinken::s;
 use wasm_bindgen::prelude::*;
 use web_sys::HtmlElement;
 

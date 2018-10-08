@@ -1,5 +1,5 @@
 [package]
-name = "same-with-jqrs"
+name = "same-with-schinken"
 version = "0.1.0"
 authors = ["The wasm-bindgen Developers"]
 
@@ -9,4 +9,4 @@ crate-type = ["cdylib"]
 [dependencies]
 wasm-bindgen = "0.2.24"
 web-sys = { version = "0.3", features = [ 'Document', 'Element', 'HtmlElement', 'HtmlCollection', 'Node', 'Window', ] }
-jqrs = { path = "../..", version = "0.1" }
+schinken = { path = "../..", version = "0.1" }

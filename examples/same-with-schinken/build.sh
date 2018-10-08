@@ -5,6 +5,6 @@
 set -ex
 
 cargo +nightly build --target wasm32-unknown-unknown
-wasm-bindgen ../../target/wasm32-unknown-unknown/debug/same_with_jqrs.wasm --out-dir .
+wasm-bindgen ../../target/wasm32-unknown-unknown/debug/same_with_schinken.wasm --out-dir .
 npm install
 npm run serve
